@@ -1,0 +1,86 @@
+** SysBiblioteca
+Sistema de gerenciamento de acervo bibliográfico desenvolvido em Java, com arquitetura em camadas e interface de linha de comando (CLI).
+
+Conteúdo
+→ Sobre o Projeto
+→ Funcionalidades
+→ Arquitetura e Classes
+→ Estrutura de Arquivos
+→ Como Executar
+→ Exemplo de Uso
+→ Validações Implementadas
+Sobre o Projeto
+O SysBiblioteca é um sistema CRUD completo para gerenciamento de livros em uma biblioteca, desenvolvido como projeto acadêmico. A aplicação segue o padrão de separação de responsabilidades, dividindo a lógica em camadas de modelo, serviço e interface com o usuário.
+
+Este projeto foi desenvolvido com fins educacionais, demonstrando conceitos de orientação a objetos, encapsulamento, validação de dados e organização em camadas no Java.
+
+Funcionalidades
++
+Cadastrar Livro
+Adiciona novo livro ao acervo com validação completa dos campos.
+≡
+Listar Acervo
+Exibe todos os livros cadastrados com numeração sequencial.
+⌕
+Pesquisar
+Busca por título, autor ou ano de publicação (parcial, case-insensitive).
+✎
+Editar Livro
+Atualiza dados de um livro existente com verificação de duplicatas.
+✕
+Remover Livro
+Remove um livro específico ou limpa todo o acervo.
+!
+Validações
+Título, autor, ano (1900–atual) e número de páginas validados.
+Arquitetura e Classes
+Classe	Tipo	Responsabilidade
+Livro	Model	Entidade principal. Encapsula título, autor, ano e número de páginas. Implementa toString().
+LivroService	Service	Contém toda a lógica de negócio: validação, formatação, verificação de duplicatas e operações CRUD sobre o acervo.
+Main	Controller / UI	Gerencia o menu interativo, captura entradas do usuário e delega as operações ao serviço.
+Input	Util	Utilitário para leitura e validação de entrada do usuário: inteiros, decimais e strings não vazias.
+IO	Util	Abstração para operações de leitura (readln) e escrita (println) no console.
+Estrutura de Arquivos
+SysBiblioteca/
+├── src/
+│ ├── Main.java // ponto de entrada e menu CLI
+│ ├── Livro.java // model da entidade Livro
+│ ├── LivroService.java // lógica de negócio e acervo
+│ ├── Input.java // utilitário de entrada de dados
+│ └── IO.java // abstração de I/O no console
+└── README.md
+Como Executar
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/sysbiblioteca.git
+# 2. Acesse a pasta do projeto
+cd sysbiblioteca/src
+# 3. Compile os arquivos
+javac *.java
+# 4. Execute a aplicação
+java Main
+
+Exemplo de Uso
+===== SysBiblioteca =====
+
+1. Cadastrar Livro
+2. Listar Livros
+3. Pesquisar por Título
+
+
+Digite uma opção: 1
+Digite o título do livro: Dom Casmurro
+Digite o autor do livro: Machado de Assis
+Digite o ano de publicação: 1899
+Erro: Ano de publicação inválido!
+
+Digite o ano de publicação: 1899 → válido: 1900–2026
+Validações Implementadas
+Campo	Regra
+Título	Não nulo, não vazio após trim. Armazenado em maiúsculas.
+Autor	Não nulo, não vazio após trim. Armazenado em maiúsculas.
+Ano de Publicação	Entre 1900 e o ano atual (inclusive), via LocalDate.now().getYear().
+Número de Páginas	Deve ser maior que zero.
+Duplicata	Não permite dois livros com o mesmo título + autor + ano simultaneamente.
+
+RA: 1138911 Pedro Henrique Fernandes Polita 
+RA: 1137876 Gabriel Nunes dos Santos
